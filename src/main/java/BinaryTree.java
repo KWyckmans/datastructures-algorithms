@@ -1,7 +1,5 @@
-import jdk.nashorn.internal.ir.FunctionCall;
-
-import java.util.concurrent.Callable;
-import java.util.function.*;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class BinaryTree {
     private Node treeRoot = null;
@@ -23,45 +21,20 @@ public class BinaryTree {
         }
 
         return root;
-
     }
-
-    public void printPreOrder(){
-        if(treeRoot != null){
-            visit(treeRoot);
-        }
-    }
-
-    public void printPostOrder(){
-
-    }
-
-    private void visit(Node node){
-        System.out.println(node.value);
-
-        if(node.left != null) {
-            visit(node.left);
-        }
-
-        if(node.right != null){
-            visit(node.right);
-        }
-
-    }
-
 
     public boolean find(int value) {
         return false;
     }
 
-    public void traverse(BiConsumer<Node, Consumer<Integer>> traversal, Consumer<Integer> visitor){
+    void traverse(BiConsumer<Node, Consumer<Integer>> traversal, Consumer<Integer> visitor) {
         traversal.accept(treeRoot, visitor);
     }
 
-    public class Node {
-        public Node left;
-        public Node right;
-        public int value;
+    class Node {
+        private Node left;
+        private Node right;
+        private int value;
 
         Node(int value, Node left, Node right) {
             this.value = value;
@@ -76,6 +49,52 @@ public class BinaryTree {
         }
     }
 
+    static class Visitors {
+        static void printVisitor(int value) {
+            System.out.println(value);
+        }
+    }
+
+    static class Traversals {
+        static void preOrderTraversal(BinaryTree.Node node, Consumer<Integer> visitor) {
+            visitor.accept(node.value);
+
+            if (node.left != null) {
+                preOrderTraversal(node.left, visitor);
+            }
+
+            if (node.right != null) {
+                preOrderTraversal(node.right, visitor);
+            }
+        }
+
+        static void inOrderTraversal(BinaryTree.Node node, Consumer<Integer> visitor) {
+
+            if (node.left != null) {
+                inOrderTraversal(node.left, visitor);
+            }
+
+            visitor.accept(node.value);
+
+            if (node.right != null) {
+                inOrderTraversal(node.right, visitor);
+            }
+        }
+
+        static void postOrderTraversal(BinaryTree.Node node, Consumer<Integer> visitor) {
+
+            if (node.left != null) {
+                postOrderTraversal(node.left, visitor);
+            }
+
+            if (node.right != null) {
+                postOrderTraversal(node.right, visitor);
+            }
+
+            visitor.accept(node.value);
+
+        }
+    }
 
 }
 

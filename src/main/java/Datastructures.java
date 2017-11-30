@@ -53,7 +53,7 @@ public class Datastructures {
         tree.insert(8);
         tree.insert(4);
         tree.insert(16);
-        tree.printPreOrder();
+        tree.traverse(BinaryTree.Traversals::preOrderTraversal, BinaryTree.Visitors::printVisitor);
         System.out.println(" - - - - - - ");
         tree.insert(9);
         tree.insert(18);
@@ -63,10 +63,10 @@ public class Datastructures {
         tree.insert(1);
 //        tree.printPreOrder();
 
-        tree.traverse(Traversals::preOrderTraversal, Visitors::printVisitor);
+        tree.traverse(BinaryTree.Traversals::preOrderTraversal, BinaryTree.Visitors::printVisitor);
         System.out.println(" - - - - - - ");
-        tree.traverse(Traversals::inOrderTraversal, Visitors::printVisitor);
+        tree.traverse(BinaryTree.Traversals::inOrderTraversal, BinaryTree.Visitors::printVisitor);
         System.out.println(" - - - - - - ");
-        tree.traverse(Traversals::postOrderTraversal, Visitors::printVisitor);
+        tree.traverse(BinaryTree.Traversals::postOrderTraversal, BinaryTree.Visitors::printVisitor);
     }
 }
