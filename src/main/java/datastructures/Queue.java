@@ -1,12 +1,14 @@
+package datastructures;
+
 public class Queue {
-    public Queue(){
+    public Queue() {
     }
 
-    public void enqueue(int item){
+    public void enqueue(int item) {
         list.insert(item);
     }
 
-    public int dequeue(){
+    public int dequeue() {
         return list.popBack();
     }
 

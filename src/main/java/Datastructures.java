@@ -1,6 +1,15 @@
+import datastructures.BinaryTree;
+import datastructures.LinkedList;
+import datastructures.Queue;
+import datastructures.Stack;
+
+import java.util.Collections;
+import java.util.Random;
+
+import static datastructures.BinaryTree.*;
 
 public class Datastructures {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         LinkedList list = new LinkedList();
         System.out.println(list);
         System.out.println(list.count());
@@ -8,20 +17,22 @@ public class Datastructures {
 
         list.insert(2);
         list.delete(3);
-
         list.insert(1);
         list.insert(2);
         list.insert(5);
 
         System.out.println(list);
-        System.out.println(list.count());
+        System.out.println("List size: " + list.count());
+
+        System.out.println("Sorting list:");
+        System.out.println(list.sort());
 
         System.out.println(list.empty() ? "List is empty" : "List not empty");
         list.delete(2);
         System.out.println(list);
 
         list.search(2).ifPresent(System.out::println);
-        System.out.println(!list.search(17).isPresent() ? "Not present": "present");
+        System.out.println(!list.search(17).isPresent() ? "Not present" : "present");
 
         System.out.println(" === Testing Stack implementation === ");
 
@@ -53,7 +64,7 @@ public class Datastructures {
         tree.insert(8);
         tree.insert(4);
         tree.insert(16);
-        tree.traverse(BinaryTree.Traversals::preOrderTraversal, BinaryTree.Visitors::printVisitor);
+        tree.traverse(BinaryTree.Traversals::preOrderTraversal, Visitors::printVisitor);
         System.out.println(" - - - - - - ");
         tree.insert(9);
         tree.insert(18);
@@ -63,10 +74,27 @@ public class Datastructures {
         tree.insert(1);
 //        tree.printPreOrder();
 
-        tree.traverse(BinaryTree.Traversals::preOrderTraversal, BinaryTree.Visitors::printVisitor);
+        tree.traverse(Traversals::preOrderTraversal, Visitors::printVisitor);
         System.out.println(" - - - - - - ");
-        tree.traverse(BinaryTree.Traversals::inOrderTraversal, BinaryTree.Visitors::printVisitor);
+        tree.traverse(Traversals::inOrderTraversal, Visitors::printVisitor);
         System.out.println(" - - - - - - ");
-        tree.traverse(BinaryTree.Traversals::postOrderTraversal, BinaryTree.Visitors::printVisitor);
+        tree.traverse(Traversals::postOrderTraversal, Visitors::printVisitor);
+
+        System.out.println("- - - - - list sorting testing - - - - - - - - - ");
+        LinkedList sortingList = new LinkedList();
+        System.out.println("empty list: " + sortingList.sort());
+        sortingList.insert(1);
+        System.out.println("1 element: " + sortingList.sort());
+        sortingList.insert(1);
+        sortingList.insert(1);
+        sortingList.insert(1);
+        sortingList.insert(1);
+        System.out.println("identical elements: " + sortingList.sort());
+
+        Random rand = new Random();
+        for (int i = 0; i < 100; i++) {
+            sortingList.insert(rand.nextInt(50) + 1);
+        }
+        System.out.println(sortingList.sort());
     }
 }

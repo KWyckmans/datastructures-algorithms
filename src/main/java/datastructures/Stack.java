@@ -1,13 +1,17 @@
+package datastructures;
+
+import datastructures.LinkedList;
+
 public class Stack {
-    public Stack(){
+    public Stack() {
         list = new LinkedList();
     }
 
-    public int pop(){
+    public int pop() {
         return list.popFront();
     }
 
-    public void push(int item){
+    public void push(int item) {
         list.insert(item);
     }
 
