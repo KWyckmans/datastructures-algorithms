@@ -3,4 +3,4 @@ jdk:
   - openjdk8
 install: true
 after_success:
-  - mvn clean cobertura:cobertura org.eluder.coveralls:report
+  - mvn clean test cobertura:report coveralls:report
