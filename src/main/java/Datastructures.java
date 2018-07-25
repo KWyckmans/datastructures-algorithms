@@ -1,12 +1,13 @@
-import datastructures.BinaryTree;
-import datastructures.LinkedList;
-import datastructures.Queue;
-import datastructures.Stack;
+import be.wyckd.datastructures.Hashmap;
+import be.wyckd.util.Person;
+import be.wyckd.datastructures.BinaryTree;
+import be.wyckd.datastructures.LinkedList;
+import be.wyckd.datastructures.Queue;
+import be.wyckd.datastructures.Stack;
 
-import java.util.Collections;
 import java.util.Random;
 
-import static datastructures.BinaryTree.*;
+import static be.wyckd.datastructures.BinaryTree.*;
 
 public class Datastructures {
     public static void main(String[] args) {
@@ -96,5 +97,22 @@ public class Datastructures {
             sortingList.insert(rand.nextInt(50) + 1);
         }
         System.out.println(sortingList.sort());
+
+        System.out.println("- - - - - - - - Hashmap - - - - - - - - ");
+
+        Hashmap<String, Person> people = new Hashmap<>();
+
+        try{
+            people.get("kevin");
+        } catch (Hashmap.KeyNotFoundException e){
+            System.err.println("Tried to retrieve an element that does not exist");
+        }
+
+        String[] names = {"Kevin", "Sanne", "Bal", "Slimmy", "Karel", "Pedro"};
+        for(String name:names) {
+            people.add(name, Person.from(name));
+        }
+
+        System.out.println(people);
     }
 }

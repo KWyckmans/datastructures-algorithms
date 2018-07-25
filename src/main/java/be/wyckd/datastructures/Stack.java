@@ -1,6 +1,4 @@
-package datastructures;
-
-import datastructures.LinkedList;
+package be.wyckd.datastructures;
 
 public class Stack {
     public Stack() {

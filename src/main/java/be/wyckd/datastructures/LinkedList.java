@@ -1,4 +1,4 @@
-package datastructures;
+package be.wyckd.datastructures;
 
 import java.util.Optional;
 
