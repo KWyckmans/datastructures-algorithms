@@ -3,4 +3,4 @@ jdk:
   - openjdk8
 install: true
 after_success:
-  - mvn clean test cobertura:report coveralls:report
+  - mvn clean cobertura:cobertura coveralls:report
