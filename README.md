@@ -8,3 +8,9 @@ The datastructures implemented are:
 * Stack
 * Binary tree
 * HashMap
+
+# Integrations
+Used this opportunity to test various github integrations:
+
+[![Coverage Status](https://coveralls.io/repos/github/KWyckmans/datastructures-algorithms/badge.svg?branch=master)](https://coveralls.io/github/KWyckmans/datastructures-algorithms?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/KWyckmans/datastructures-algorithms/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/KWyckmans/datastructures-algorithms?targetFile=pom.xml)
