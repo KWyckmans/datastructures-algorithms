@@ -3,6 +3,8 @@ package be.wyckd.datastructures;
 import java.util.Optional;
 
 public class LinkedList {
+    private Node head;
+
     public LinkedList() {
 
     }
@@ -18,8 +20,6 @@ public class LinkedList {
         if (this.head == null) {
             return 0;
         } else {
-
-
             Node current = this.head;
 
             while (current.next != null) {
@@ -54,13 +54,17 @@ public class LinkedList {
     public void delete(int item) {
         Node current = this.head;
 
-        while (current.next != null) {
-            if (current.next.value == item) {
-                current.next = current.next.next;
-                break;
-            }
+        if (current.value == item) {
+            this.head = current.next;
+        } else {
+            while (current.next != null) {
+                if (current.next.value == item) {
+                    current.next = current.next.next;
+                    break;
+                }
 
-            current = current.next;
+                current = current.next;
+            }
         }
     }
 
@@ -88,13 +92,7 @@ public class LinkedList {
         return last.value;
     }
 
-    private void print(Node node, StringBuilder builder) {
-        builder.append(node);
-        if (node.next != null) {
-            print(node.next, builder);
-        }
-    }
-
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("[");
@@ -107,8 +105,8 @@ public class LinkedList {
         return builder.toString();
     }
 
-    public LinkedList sort(){
-        if(this.head == null || this.head.next == null){
+    public LinkedList sort() {
+        if (this.head == null || this.head.next == null) {
             return this;
         } else {
             LinkedList newList = new LinkedList();
@@ -116,7 +114,7 @@ public class LinkedList {
             Node listTraverser = this.head.next;
             Node newListNodeTraverser = new Node(newList.head.value, null);
 
-            while(listTraverser != null){
+            while (listTraverser != null) {
                 Node previous = null;
                 Node item = new Node(listTraverser.value, null);
 
@@ -125,7 +123,7 @@ public class LinkedList {
                     newListNodeTraverser = newListNodeTraverser.next;
                 }
 
-                if(previous == null){
+                if (previous == null) {
                     newList.head = item;
                     item.next = newListNodeTraverser;
                 } else {
@@ -141,17 +139,22 @@ public class LinkedList {
         }
     }
 
-    private Node head;
+    private void print(Node node, StringBuilder builder) {
+        builder.append(node);
+        if (node.next != null) {
+            print(node.next, builder);
+        }
+    }
 
     private class Node {
+        int value;
+        Node next;
         Node(int value, Node next) {
             this.value = value;
             this.next = next;
         }
 
-        int value;
-        Node next;
-
+        @Override
         public String toString() {
             StringBuilder repr = new StringBuilder();
             repr.append(this.value);
