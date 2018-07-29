@@ -109,11 +109,10 @@ public class Datastructures {
             System.err.println("Tried to retrieve an element that does not exist");
         }
 
-        String[] names = {"Kevin", "Sanne", "Bal", "Slimmy", "Karel", "Pedro"};
+        String[] names = {"Kevin", "Sanne", "Bal", "Slimmy", "Karel", "Pedro", "Tim", "Pascal", "Michiel", "Nelson", "Olivier"};
         for(String name:names) {
             people.add(name, Person.from(name));
+            System.out.println(people);
         }
-
-        System.out.println(people);
     }
 }
