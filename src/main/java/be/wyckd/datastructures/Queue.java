@@ -1,16 +1,16 @@
 package be.wyckd.datastructures;
 
-public class Queue {
+public class Queue<T extends Comparable<T>> {
     public Queue() {
     }
 
-    public void enqueue(int item) {
+    public void enqueue(T item) {
         list.insert(item);
     }
 
-    public int dequeue() {
+    public T dequeue() {
         return list.popBack();
     }
 
-    private LinkedList list = new LinkedList();
+    private LinkedList<T> list = new LinkedList<>();
 }

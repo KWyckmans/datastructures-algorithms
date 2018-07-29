@@ -2,16 +2,15 @@ package be.wyckd.datastructures;
 
 import java.util.Optional;
 
-public class LinkedList {
+public class LinkedList<T extends Comparable<T>> {
     private Node head;
 
     public LinkedList() {
 
     }
 
-    public void insert(int value) {
-        Node node = new Node(value, head);
-        head = node;
+    public void insert(T value) {
+        head = new Node(value, head);
     }
 
     public int count() {
@@ -35,7 +34,7 @@ public class LinkedList {
         return count() == 0;
     }
 
-    public Optional<Integer> search(int item) {
+    public Optional<T> search(T item) {
 
         Node current;
         for (current = this.head; current.next != null; current = current.next) {
@@ -51,7 +50,7 @@ public class LinkedList {
         }
     }
 
-    public void delete(int item) {
+    public void delete(T item) {
         Node current = this.head;
 
         if (current.value == item) {
@@ -68,14 +67,14 @@ public class LinkedList {
         }
     }
 
-    public int popFront() {
+    public T popFront() {
         Node top = this.head;
         this.head = this.head.next;
 
         return top.value;
     }
 
-    public int popBack() {
+    public T popBack() {
         Node current = this.head;
 
         if (current.next == null) {
@@ -109,7 +108,7 @@ public class LinkedList {
         if (this.head == null || this.head.next == null) {
             return this;
         } else {
-            LinkedList newList = new LinkedList();
+            LinkedList<T> newList = new LinkedList<>();
             newList.head = this.head;
             Node listTraverser = this.head.next;
             Node newListNodeTraverser = new Node(newList.head.value, null);
@@ -118,7 +117,7 @@ public class LinkedList {
                 Node previous = null;
                 Node item = new Node(listTraverser.value, null);
 
-                while (newListNodeTraverser != null && newListNodeTraverser.value < listTraverser.value) {
+                while (newListNodeTraverser != null && newListNodeTraverser.value.compareTo(listTraverser.value) < 0 ) {
                     previous = newListNodeTraverser;
                     newListNodeTraverser = newListNodeTraverser.next;
                 }
@@ -147,9 +146,10 @@ public class LinkedList {
     }
 
     private class Node {
-        int value;
+        T value;
         Node next;
-        Node(int value, Node next) {
+
+        Node(T value, Node next) {
             this.value = value;
             this.next = next;
         }

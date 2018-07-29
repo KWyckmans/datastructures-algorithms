@@ -9,11 +9,11 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 public class LinkedListTest {
-    private LinkedList list;
+    private LinkedList<Integer> list;
 
     @Before
     public void setup(){
-        list = new LinkedList();
+        list = new LinkedList<>();
     }
 
     @Test
