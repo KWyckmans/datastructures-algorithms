@@ -33,7 +33,7 @@ public class BinaryTree<T extends Comparable<T>> {
         return root;
     }
 
-    public void traverse(BiConsumer<BinaryTree, Consumer<BinaryTree>> traversal, Consumer<BinaryTree> visitor) {
+    public void traverse(Traverser traversal, Visitor visitor) {
         traversal.accept(treeRoot, visitor);
     }
 
@@ -44,100 +44,51 @@ public class BinaryTree<T extends Comparable<T>> {
                 '}';
     }
 
-    public static class PrintVisitor {
-        public static void visit(BinaryTree tree) {
-            System.out.println(tree);
+    public interface Visitor extends Consumer<BinaryTree> {
+        static void printVisitor(BinaryTree tree) {
+            System.out.println(tree.value);
         }
     }
 
-    public static final class PreOrderTraversal {
-        public static void traverse(BinaryTree tree, Consumer<BinaryTree> visitor) {
+    public interface Traverser extends BiConsumer<BinaryTree, Consumer<BinaryTree>>{
+        static void preOrderTraverser(BinaryTree tree, Consumer<BinaryTree> visitor) {
             visitor.accept(tree);
 
             if (tree.left != null) {
-                traverse(tree.left, visitor);
+                preOrderTraverser(tree.left, visitor);
             }
 
             if (tree.right != null) {
-                traverse(tree.right, visitor);
+                preOrderTraverser(tree.right, visitor);
             }
         }
-    }
 
-    public static class InOrderTraversal {
-        public static void traverse(BinaryTree tree, Consumer<BinaryTree> visitor) {
-
+        static void inOrderTraverser(BinaryTree tree, Consumer<BinaryTree> visitor) {
             if (tree.left != null) {
-                traverse(tree.left, visitor);
+                inOrderTraverser(tree.left, visitor);
             }
 
             visitor.accept(tree);
 
             if (tree.right != null) {
-                traverse(tree.right, visitor);
+                inOrderTraverser(tree.right, visitor);
             }
         }
 
-    }
-
-    public static class PostOrderTraversal {
-        public static void traverse(BinaryTree tree, Consumer<BinaryTree> visitor) {
+        static void postOrderTraverser(BinaryTree tree, Consumer<BinaryTree> visitor) {
             if (tree.left != null) {
-                traverse(tree.left, visitor);
+                postOrderTraverser(tree.left, visitor);
             }
 
             if (tree.right != null) {
-                traverse(tree.right, visitor);
+                postOrderTraverser(tree.right, visitor);
             }
 
             visitor.accept(tree);
+
         }
     }
 }
-
-//    public class Traversals {
-//        public void preOrderTraversal(BinaryTree<T> node, Consumer<T> visitor) {
-//            visitor.accept(node.value);
-//
-//            if (node.left != null) {
-//                preOrderTraversal(node.left, visitor);
-//            }
-//
-//            if (node.right != null) {
-//                preOrderTraversal(node.right, visitor);
-//            }
-//        }
-//
-//       public  void inOrderTraversal(BinaryTree<T> node, Consumer<T> visitor) {
-//
-//            if (node.left != null) {
-//                inOrderTraversal(node.left, visitor);
-//            }
-//
-//            visitor.accept(node.value);
-//
-//            if (node.right != null) {
-//                inOrderTraversal(node.right, visitor);
-//            }
-//        }
-//
-//        public void postOrderTraversal(BinaryTree<T> node, Consumer<T> visitor) {
-//
-//            if (node.left != null) {
-//                postOrderTraversal(node.left, visitor);
-//            }
-//
-//            if (node.right != null) {
-//                postOrderTraversal(node.right, visitor);
-//            }
-//
-//            visitor.accept(node.value);
-//
-//        }
-//    }
-
-
-
 
 
 

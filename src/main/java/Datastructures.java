@@ -4,7 +4,6 @@ import be.wyckd.datastructures.BinaryTree;
 import be.wyckd.datastructures.LinkedList;
 import be.wyckd.datastructures.Queue;
 import be.wyckd.datastructures.Stack;
-import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.Random;
 
@@ -66,7 +65,7 @@ public class Datastructures {
         tree.insert(8);
         tree.insert(4);
         tree.insert(16);
-        tree.traverse(BinaryTree.PreOrderTraversal::traverse, BinaryTree.PrintVisitor::visit);
+        tree.traverse(Traverser::preOrderTraverser, Visitor::printVisitor);
         System.out.println(" - - - - - - ");
         tree.insert(9);
         tree.insert(18);
@@ -76,11 +75,11 @@ public class Datastructures {
         tree.insert(1);
 //        tree.printPreOrder();
 
-        tree.traverse(BinaryTree.PreOrderTraversal::traverse, BinaryTree.PrintVisitor::visit);
+        tree.traverse(Traverser::preOrderTraverser, Visitor::printVisitor);
         System.out.println(" - - - - - - ");
-        tree.traverse(BinaryTree.InOrderTraversal::traverse, BinaryTree.PrintVisitor::visit);
+        tree.traverse(Traverser::inOrderTraverser, Visitor::printVisitor);
         System.out.println(" - - - - - - ");
-        tree.traverse(BinaryTree.PostOrderTraversal::traverse, BinaryTree.PrintVisitor::visit);
+        tree.traverse(Traverser::postOrderTraverser, Visitor::printVisitor);
 
         System.out.println("- - - - - list sorting testing - - - - - - - - - ");
         LinkedList<Integer> sortingList = new LinkedList<>();
@@ -103,14 +102,14 @@ public class Datastructures {
 
         Hashmap<String, Person> people = new Hashmap<>();
 
-        try{
+        try {
             people.get("kevin");
-        } catch (Hashmap.KeyNotFoundException e){
+        } catch (Hashmap.KeyNotFoundException e) {
             System.err.println("Tried to retrieve an element that does not exist");
         }
 
         String[] names = {"Kevin", "Sanne", "Bal", "Slimmy", "Karel", "Pedro"};
-        for(String name:names) {
+        for (String name : names) {
             people.add(name, Person.from(name));
         }
 
