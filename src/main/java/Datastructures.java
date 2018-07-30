@@ -61,11 +61,11 @@ public class Datastructures {
         System.out.println(queue.dequeue());
 
         System.out.println(" === Binary Tree === ");
-        BinaryTree tree = new BinaryTree();
+        BinaryTree<Integer> tree = new BinaryTree<>();
         tree.insert(8);
         tree.insert(4);
         tree.insert(16);
-        tree.traverse(BinaryTree.Traversals::preOrderTraversal, Visitors::printVisitor);
+        tree.traverse(BinaryTree.PreOrderTraversal::traverse, BinaryTree.PrintVisitor::visit);
         System.out.println(" - - - - - - ");
         tree.insert(9);
         tree.insert(18);
@@ -75,11 +75,11 @@ public class Datastructures {
         tree.insert(1);
 //        tree.printPreOrder();
 
-        tree.traverse(Traversals::preOrderTraversal, Visitors::printVisitor);
+        tree.traverse(BinaryTree.PreOrderTraversal::traverse, BinaryTree.PrintVisitor::visit);
         System.out.println(" - - - - - - ");
-        tree.traverse(Traversals::inOrderTraversal, Visitors::printVisitor);
+        tree.traverse(BinaryTree.InOrderTraversal::traverse, BinaryTree.PrintVisitor::visit);
         System.out.println(" - - - - - - ");
-        tree.traverse(Traversals::postOrderTraversal, Visitors::printVisitor);
+        tree.traverse(BinaryTree.PostOrderTraversal::traverse, BinaryTree.PrintVisitor::visit);
 
         System.out.println("- - - - - list sorting testing - - - - - - - - - ");
         LinkedList sortingList = new LinkedList();
