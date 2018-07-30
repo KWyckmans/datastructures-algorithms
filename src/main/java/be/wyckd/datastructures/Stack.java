@@ -1,17 +1,17 @@
 package be.wyckd.datastructures;
 
-public class Stack {
+public class Stack<T extends Comparable<T>> {
     public Stack() {
-        list = new LinkedList();
+        list = new LinkedList<>();
     }
 
-    public int pop() {
+    public T pop() {
         return list.popFront();
     }
 
-    public void push(int item) {
+    public void push(T item) {
         list.insert(item);
     }
 
-    private LinkedList list;
+    private LinkedList<T> list;
 }

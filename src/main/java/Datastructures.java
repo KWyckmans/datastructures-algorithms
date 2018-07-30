@@ -4,6 +4,7 @@ import be.wyckd.datastructures.BinaryTree;
 import be.wyckd.datastructures.LinkedList;
 import be.wyckd.datastructures.Queue;
 import be.wyckd.datastructures.Stack;
+import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.Random;
 
@@ -11,7 +12,7 @@ import static be.wyckd.datastructures.BinaryTree.*;
 
 public class Datastructures {
     public static void main(String[] args) {
-        LinkedList list = new LinkedList();
+        LinkedList<Integer> list = new LinkedList<>();
         System.out.println(list);
         System.out.println(list.count());
         System.out.println(list.empty() ? "List is empty" : "List not empty");
@@ -37,7 +38,7 @@ public class Datastructures {
 
         System.out.println(" === Testing Stack implementation === ");
 
-        Stack stack = new Stack();
+        Stack<Integer> stack = new Stack<>();
         stack.push(5);
         stack.push(4);
         stack.push(2);
@@ -50,7 +51,7 @@ public class Datastructures {
 
         System.out.println(" === Testing Queue implementation === ");
 
-        Queue queue = new Queue();
+        Queue<Integer> queue = new Queue<>();
         queue.enqueue(5);
         System.out.println(queue.dequeue());
         queue.enqueue(2);
@@ -82,7 +83,7 @@ public class Datastructures {
         tree.traverse(BinaryTree.PostOrderTraversal::traverse, BinaryTree.PrintVisitor::visit);
 
         System.out.println("- - - - - list sorting testing - - - - - - - - - ");
-        LinkedList sortingList = new LinkedList();
+        LinkedList<Integer> sortingList = new LinkedList<>();
         System.out.println("empty list: " + sortingList.sort());
         sortingList.insert(1);
         System.out.println("1 element: " + sortingList.sort());

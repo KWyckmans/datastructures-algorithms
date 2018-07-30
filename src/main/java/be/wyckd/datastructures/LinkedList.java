@@ -2,14 +2,15 @@ package be.wyckd.datastructures;
 
 import java.util.Optional;
 
-public class LinkedList {
+public class LinkedList<T extends Comparable<T>> {
+    private Node head;
+
     public LinkedList() {
 
     }
 
-    public void insert(int value) {
-        Node node = new Node(value, head);
-        head = node;
+    public void insert(T value) {
+        head = new Node(value, head);
     }
 
     public int count() {
@@ -18,8 +19,6 @@ public class LinkedList {
         if (this.head == null) {
             return 0;
         } else {
-
-
             Node current = this.head;
 
             while (current.next != null) {
@@ -35,7 +34,7 @@ public class LinkedList {
         return count() == 0;
     }
 
-    public Optional<Integer> search(int item) {
+    public Optional<T> search(T item) {
 
         Node current;
         for (current = this.head; current.next != null; current = current.next) {
@@ -51,27 +50,31 @@ public class LinkedList {
         }
     }
 
-    public void delete(int item) {
+    public void delete(T item) {
         Node current = this.head;
 
-        while (current.next != null) {
-            if (current.next.value == item) {
-                current.next = current.next.next;
-                break;
-            }
+        if (current.value == item) {
+            this.head = current.next;
+        } else {
+            while (current.next != null) {
+                if (current.next.value == item) {
+                    current.next = current.next.next;
+                    break;
+                }
 
-            current = current.next;
+                current = current.next;
+            }
         }
     }
 
-    public int popFront() {
+    public T popFront() {
         Node top = this.head;
         this.head = this.head.next;
 
         return top.value;
     }
 
-    public int popBack() {
+    public T popBack() {
         Node current = this.head;
 
         if (current.next == null) {
@@ -88,13 +91,7 @@ public class LinkedList {
         return last.value;
     }
 
-    private void print(Node node, StringBuilder builder) {
-        builder.append(node);
-        if (node.next != null) {
-            print(node.next, builder);
-        }
-    }
-
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("[");
@@ -107,25 +104,25 @@ public class LinkedList {
         return builder.toString();
     }
 
-    public LinkedList sort(){
-        if(this.head == null || this.head.next == null){
+    public LinkedList sort() {
+        if (this.head == null || this.head.next == null) {
             return this;
         } else {
-            LinkedList newList = new LinkedList();
+            LinkedList<T> newList = new LinkedList<>();
             newList.head = this.head;
             Node listTraverser = this.head.next;
             Node newListNodeTraverser = new Node(newList.head.value, null);
 
-            while(listTraverser != null){
+            while (listTraverser != null) {
                 Node previous = null;
                 Node item = new Node(listTraverser.value, null);
 
-                while (newListNodeTraverser != null && newListNodeTraverser.value < listTraverser.value) {
+                while (newListNodeTraverser != null && newListNodeTraverser.value.compareTo(listTraverser.value) < 0 ) {
                     previous = newListNodeTraverser;
                     newListNodeTraverser = newListNodeTraverser.next;
                 }
 
-                if(previous == null){
+                if (previous == null) {
                     newList.head = item;
                     item.next = newListNodeTraverser;
                 } else {
@@ -141,17 +138,23 @@ public class LinkedList {
         }
     }
 
-    private Node head;
+    private void print(Node node, StringBuilder builder) {
+        builder.append(node);
+        if (node.next != null) {
+            print(node.next, builder);
+        }
+    }
 
     private class Node {
-        Node(int value, Node next) {
+        T value;
+        Node next;
+
+        Node(T value, Node next) {
             this.value = value;
             this.next = next;
         }
 
-        int value;
-        Node next;
-
+        @Override
         public String toString() {
             StringBuilder repr = new StringBuilder();
             repr.append(this.value);
