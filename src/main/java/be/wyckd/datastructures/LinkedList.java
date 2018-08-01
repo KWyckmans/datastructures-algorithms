@@ -1,8 +1,10 @@
 package be.wyckd.datastructures;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
-public class LinkedList<T extends Comparable<T>> {
+public class LinkedList<T extends Comparable<T>> implements Iterable<T>, Collection<T> {
     private Node head;
 
     public LinkedList() {
@@ -135,6 +137,31 @@ public class LinkedList<T extends Comparable<T>> {
             }
 
             return newList;
+        }
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ListIterator();
+    }
+
+    class ListIterator implements Iterator<T> {
+        Node current = new Node(null, head);
+
+        @Override
+        public boolean hasNext() {
+            return current.next != null;
+        }
+
+        @Override
+        public T next() {
+            if(!hasNext()){
+                throw new NoSuchElementException();
+            } else {
+                Node next = current.next;
+                current = next;
+                return next.value;
+            }
         }
     }
 

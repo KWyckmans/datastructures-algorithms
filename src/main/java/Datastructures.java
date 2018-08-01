@@ -1,10 +1,12 @@
 import be.wyckd.datastructures.Hashmap;
+import be.wyckd.sorting.Sorter;
 import be.wyckd.util.Person;
 import be.wyckd.datastructures.BinaryTree;
 import be.wyckd.datastructures.LinkedList;
 import be.wyckd.datastructures.Queue;
 import be.wyckd.datastructures.Stack;
 
+import java.util.Collections;
 import java.util.Random;
 
 import static be.wyckd.datastructures.BinaryTree.*;
@@ -73,7 +75,7 @@ public class Datastructures {
         tree.insert(3);
         tree.insert(2);
         tree.insert(1);
-//        tree.printPreOrder();
+
 
         tree.traverse(Traverser::preOrderTraverser, Visitor::printVisitor);
         System.out.println(" - - - - - - ");
@@ -96,7 +98,9 @@ public class Datastructures {
         for (int i = 0; i < 100; i++) {
             sortingList.insert(rand.nextInt(50) + 1);
         }
-        System.out.println(sortingList.sort());
+//        System.out.println(sortingList.sort());
+
+        Sorter.sort(sortingList, Sorter::InsertionSort);
 
         System.out.println("- - - - - - - - Hashmap - - - - - - - - ");
 
