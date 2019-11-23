@@ -1,5 +1,7 @@
 # Datastructures and algorithms 
-In this repository I implemented various datastructures and algorithms for personal practice.
+In this repository I implemented various datastructures and algorithms for personal practice. In reality I would (and so should you) absolutely use built-in versions of these.
+
+This was performed as an exercise while applying to various companies. It was not my goal to produce production-level code, but rather freshen up my understanding of how various datastructures work combined with a bith of a refresher about Java. If their are things in this codebase that look weird, it's probably because I was experimenting with various things.
 
 ## Datastructures
 The datastructures implemented are:
